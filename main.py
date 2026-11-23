@@ -44,8 +44,9 @@ INSTRUCTIONS = """Tu es un analyste senior en recrutement et en candidatures, fr
 def _mistral_client():
     if os.environ.get("MISTRAL_SA_TOKEN_PATH"):
         from mistralai.workflows.client import get_mistral_client
+        from mistralai.workflows.core.auth import RunAs
 
-        return get_mistral_client()
+        return get_mistral_client(run_as=RunAs.AUTO)
     from mistralai.client import Mistral
 
     return Mistral()
